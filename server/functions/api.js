@@ -17,13 +17,13 @@ router.get("/", (req, res) => {
   res.json("app is running");
 });
 
-app.post("/auth/google", async (req, res) => {
+router.post("/auth/google", async (req, res) => {
   const { tokens } = await oAuthClient.getToken(req.body.code); // exchanging code for tokens
 
   res.json(tokens);
 });
 
-app.post("/auth/google/refresh-token", (req, res) => {
+router.post("/auth/google/refresh-token", (req, res) => {
   const user = new UserRefreshClient(
     clientId,
     clientSecret,
@@ -36,7 +36,7 @@ app.post("/auth/google/refresh-token", (req, res) => {
 
 app.use(cors());
 app.use(express.json());
-app.use("/.netlify/functions/api");
+app.use("/.netlify/functions/api", router);
 module.exports.handler = serverless(app);
 // const port = process.env.PORT || 3000;
 
