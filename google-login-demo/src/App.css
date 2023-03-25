@@ -1,0 +1,71 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+  gap: 2.4rem;
+}
+
+.google-logo {
+  width: 1.8rem;
+}
+
+.btn {
+  display: block;
+  background: transparent;
+  border: 1px solid hsla(0, 0%, 0%, 0.1);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1.2rem 1.4rem;
+  font-size: 1.4rem;
+  color: #666;
+  font-weight: 550;
+  transition: all 0.3s ease-in-out;
+  margin: auto;
+}
+
+.btn:hover {
+  background: hsl(213, 77%, 98%);
+  border-color: #d1e3f8;
+}
+
+.logout {
+  width: 50%;
+}
+
+.user-container {
+  /* width: 20rem; */
+  padding: 1.6rem 3.2rem 2rem;
+  box-shadow: 1px 1px 1rem 0.4rem hsla(0, 0%, 0%, 0.07);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 3.6rem;
+}
+
+.user-card {
+  display: flex;
+  gap: 2.4rem;
+}
+
+.user-img img {
+  width: 8rem;
+  border-radius: 50%;
+  box-shadow: 1px 1px 1rem 0.4rem hsla(0, 0%, 0%, 0.04);
+  object-fit: contain;
+}
+
+.username {
+  margin-top: 1rem;
+  font-size: 1.6rem;
+  text-transform: capitalize;
+}
+
+.username span {
+  color: #000;
+  font-weight: 500;
+}

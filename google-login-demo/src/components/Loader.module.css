@@ -1,0 +1,39 @@
+.spinner {
+  display: inline-block;
+  width: 5.6rem;
+  height: 5.6rem;
+  border-radius: 50%;
+  background: conic-gradient(rgba(0, 0, 0, 0.1) 5%, #474bff);
+  animation: spin 1.5s infinite linear;
+  position: relative;
+}
+
+.spinner::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background: #e7f5ff;
+  transform: translate(-50%, -50%);
+}
+
+.spinner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: calc(5.6rem - 85%);
+  height: calc(5.6rem - 85%);
+  border-radius: 50%;
+  background: #474bff;
+  transform: translateX(-50%);
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(1turn);
+  }
+}
