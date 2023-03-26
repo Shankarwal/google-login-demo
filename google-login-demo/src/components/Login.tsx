@@ -35,10 +35,10 @@ const Login = () => {
     flow: "auth-code",
     onSuccess: async (codeResponse) => {
       const tokens = await axios.post(`${url}/auth/google`, {
-        header: {
-          "Access-Control-Allow-Origin": `${import.meta.env.VITE_BASE_URL}`,
-          Accept: "application/json",
-        },
+        // header: {
+        //   "Access-Control-Allow-Origin": `${import.meta.env.VITE_BASE_URL}`,
+        //   Accept: "application/json",
+        // },
         code: codeResponse.code,
       });
 

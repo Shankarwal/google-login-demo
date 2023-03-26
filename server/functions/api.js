@@ -36,9 +36,6 @@ const oAuthClient = new OAuth2Client(
 router.post("/auth/google", async (req, res) => {
   const { tokens } = await oAuthClient.getToken(req.body.code); // exchanging code for tokens
 
-  // res.header({
-  //   "Access-Control-Allow-Origin": "https://google-login-demo.netlify.app/",
-  // });
   res.json(tokens);
 });
 
@@ -50,9 +47,6 @@ router.post("/auth/google/refresh-token", (req, res) => {
   );
 
   const { credentials } = user.refreshAccessToken(); // obtaining new tokens
-  // res.header({
-  //   "Access-Control-Allow-Origin": "https://google-login-demo.netlify.app/",
-  // });
   res.json(credentials);
 });
 
@@ -62,8 +56,3 @@ router.get("/", (req, res) => {
 
 app.use("/.netlify/functions/api", router);
 module.exports.handler = serverless(app);
-// const port = process.env.PORT || 3000;
-
-// app.listen(port, () => {
-//   console.log("server is running on http://localhost:3001");
-// });
