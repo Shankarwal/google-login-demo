@@ -7,8 +7,20 @@ const serverless = require("serverless-http");
 const app = express();
 const router = express.Router();
 
+const whitelist = [
+  "https://google-login-demo.netlify.app",
+  "http://localhost:5173",
+];
+
 const corsOptions = {
-  origin: "https://google-login-demo.netlify.app/",
+  origin: (origin, callback) => {
+    console.log(origin);
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
   optionSuccessStatus: 200,
 };
@@ -25,9 +37,9 @@ const oAuthClient = new OAuth2Client(
 router.post("/auth/google", async (req, res) => {
   const { tokens } = await oAuthClient.getToken(req.body.code); // exchanging code for tokens
 
-  res.header({
-    "Access-Control-Allow-Origin": "*",
-  });
+  // res.header({
+  //   "Access-Control-Allow-Origin": "https://google-login-demo.netlify.app/",
+  // });
   res.json(tokens);
 });
 
@@ -39,6 +51,9 @@ router.post("/auth/google/refresh-token", (req, res) => {
   );
 
   const { credentials } = user.refreshAccessToken(); // obtaining new tokens
+  // res.header({
+  //   "Access-Control-Allow-Origin": "https://google-login-demo.netlify.app/",
+  // });
   res.json(credentials);
 });
 
