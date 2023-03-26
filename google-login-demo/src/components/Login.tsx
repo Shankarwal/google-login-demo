@@ -34,6 +34,8 @@ const Login = () => {
   const login = useGoogleLogin({
     flow: "auth-code",
     onSuccess: async (codeResponse) => {
+      console.log(url);
+      // console.log(codeResponse.code);
       const tokens = await axios.post(`${url}/auth/google`, {
         code: codeResponse.code,
       });
