@@ -7,6 +7,15 @@ const serverless = require("serverless-http");
 const app = express();
 const router = express.Router();
 
+const corsOptions = {
+  origin: "*",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
+app.use(express.json());
+
 const oAuthClient = new OAuth2Client(
   process.env.CLIENT_ID,
   process.env.CLIENT_SECRET,
@@ -20,6 +29,9 @@ router.get("/", (req, res) => {
 router.post("/auth/google", async (req, res) => {
   const { tokens } = await oAuthClient.getToken(req.body.code); // exchanging code for tokens
 
+  res.header({
+    "Access-Control-Allow-Origin": "*",
+  });
   res.json(tokens);
 });
 
@@ -34,8 +46,6 @@ router.post("/auth/google/refresh-token", (req, res) => {
   res.json(credentials);
 });
 
-app.use(cors());
-app.use(express.json());
 app.use("/.netlify/functions/api", router);
 module.exports.handler = serverless(app);
 // const port = process.env.PORT || 3000;

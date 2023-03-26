@@ -36,6 +36,10 @@ const Login = () => {
     onSuccess: async (codeResponse) => {
       const tokens = await axios.post(`${url}/auth/google`, {
         code: codeResponse.code,
+        header: {
+          "Access-Control-Allow-Origin": "*",
+          Accept: "application/json",
+        },
       });
 
       setToken(tokens.data.id_token!);
