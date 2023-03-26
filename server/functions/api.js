@@ -8,7 +8,7 @@ const app = express();
 const router = express.Router();
 
 const corsOptions = {
-  origin: "*",
+  origin: "https://google-login-demo.netlify.app/",
   credentials: true,
   optionSuccessStatus: 200,
 };
@@ -21,10 +21,6 @@ const oAuthClient = new OAuth2Client(
   process.env.CLIENT_SECRET,
   "postmessage"
 );
-
-router.get("/", (req, res) => {
-  res.json("app is running");
-});
 
 router.post("/auth/google", async (req, res) => {
   const { tokens } = await oAuthClient.getToken(req.body.code); // exchanging code for tokens
@@ -44,6 +40,10 @@ router.post("/auth/google/refresh-token", (req, res) => {
 
   const { credentials } = user.refreshAccessToken(); // obtaining new tokens
   res.json(credentials);
+});
+
+router.get("/", (req, res) => {
+  res.json("app is running");
 });
 
 app.use("/.netlify/functions/api", router);

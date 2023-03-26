@@ -35,11 +35,11 @@ const Login = () => {
     flow: "auth-code",
     onSuccess: async (codeResponse) => {
       const tokens = await axios.post(`${url}/auth/google`, {
-        code: codeResponse.code,
         header: {
           "Access-Control-Allow-Origin": "*",
           Accept: "application/json",
         },
+        code: codeResponse.code,
       });
 
       setToken(tokens.data.id_token!);
