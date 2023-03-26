@@ -10,6 +10,7 @@ const router = express.Router();
 const whitelist = [
   "https://google-login-demo.netlify.app",
   "http://localhost:5173",
+  "https://login-auth-google.netlify.app/.netlify/functions/api",
 ];
 
 const corsOptions = {

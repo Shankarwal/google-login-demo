@@ -81,7 +81,7 @@ const Login = () => {
         </>
       ) : (
         <>
-          {token ? (
+          {profile ? (
             <div className="user-container">
               <div className="user-card">
                 <div className="user-img">
